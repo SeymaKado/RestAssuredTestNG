@@ -1,0 +1,65 @@
+# RestAssured Test Project
+
+Bu proje, **RestAssured** ve **TestNG** kullanılarak oluşturulmuş API testlerini içerir.
+Çeşitli test senaryoları GoRest ve Zippopotam API'leri üzerinde gerçekleştirilmiştir.
+ Proje, Maven tabanlı bir yapılandırmaya sahiptir.
+
+## İçindekiler
+
+- [Kullanılan Teknolojiler]
+- [Testler]
+- [Bağımlılıklar]
+
+## Kullanılan Teknolojiler
+
+- **Java 11+**
+- **RestAssured** (API testi için)
+- **TestNG** (Test frameworkü olarak)
+- **Maven** (Bağımlılık yönetimi için)
+- **JavaFaker** (Test verisi üretimi için)
+
+## Testler
+
+### 1. Kullanıcı İşlemleri (_01_UsersTest.java) ////Bu projede özellikle CRUD işlemleri üzerinde çalıştım.
+ Bu sınıf, GoRest API üzerinde kullanıcı oluşturma, güncelleme ve silme gibi işlemleri kapsamaktadır.
+
+
+- **CreateUser**: Rastgele bir kullanıcı oluşturur ve API'den başarılı bir yanıt alır.
+- **GetUserById**: Oluşturulan kullanıcıyı ID ile çağırır ve doğrular.
+- **UpdateUser**: Kullanıcının adını günceller ve güncellenmiş hali doğrular.
+- **DeleteUser**: Kullanıcıyı siler ve silme işlemini doğrular.
+- **DeleteUserNegative**: Silinmiş kullanıcıyı tekrar silmeye çalışır ve 404 durum kodunu doğrular.
+
+### 2. Zippopotam API Testleri (_01_ApiTest.java)
+
+- **statusCodeTest**: API'nin HTTP durum kodunu doğrular.
+- **contentTypeTest**: API'nin JSON döndürdüğünü doğrular.
+- **checkCountryInResponseBody**: Dönen yanıtın "country" alanını doğrular.
+- **checkHasItem**: Yanıtta belirli bir değerin bulunduğunu kontrol eder.
+
+### 3. Özel Spesifikasyonlar (_02_ApiTestSpec.java)
+
+- **Request ve Response Spec**: Tekrarlı yapılandırmaları minimize eder. Testlerde genel spesifikasyonlar kullanılır.
+
+## Bağımlılıklar
+
+Projenin bağımlılıkları `pom.xml` dosyasında tanımlanmıştır. İşte ana bağımlılıklar:
+
+```xml
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>5.2.0</version>
+</dependency>
+
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.10.2</version>
+    <scope>test</scope>
+</dependency>
+
+Tüm bağımlılıkları görmek için `pom.xml` dosyasını kontrol edin.
+
+
+
